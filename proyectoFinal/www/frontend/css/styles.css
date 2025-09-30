@@ -1,0 +1,56 @@
+button {
+    transition: transform 0.3s ease, font-size 0.3s ease;
+    background-color: transparent;
+    border: none;
+    color: white;
+}
+
+button:hover {
+    transform: scale(1.2);
+}
+
+.juegosEnBibliotecaEstilo{
+    transition: transform 0.3s ease, font-size 0.3s ease;
+}
+
+.juegosEnBibliotecaEstilo:hover{
+    transform: scale(1.2);
+}
+
+.card{
+    background-color: #202124;
+    
+    transition: transform 0.3s ease, font-size 0.3s ease;
+}
+
+.card:hover{
+    transform: scale(1.2);
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    filter: invert(1);
+}
+
+  .shadow-red {
+    box-shadow: 0 0.5rem 1rem rgba(255, 0, 0, 0.304);
+  }
+
+
+body, .oscuro{
+    background-color: #202124
+}
+
+.cambiarColor{
+    color: #ffc107;
+    cursor: pointer;
+}
+.cambiarColor:hover {
+  color: #3683dc;
+  font-size: 20px;
+}
+
+.btn-xs {
+    width: 200px;
+    margin-left: 90px;
+}

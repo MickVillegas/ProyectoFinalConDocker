@@ -1,0 +1,12 @@
+// 1️⃣ Importa las funciones y variables de Bootstrap primero
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+
+// 2️⃣ Sobrescribe los colores antes de importar Bootstrap
+$primary: #FF5733;   // tu color primario
+$secondary: #33C1FF; // tu color secundario
+$success: #28a745;   // otros colores si quieres
+$danger: #dc3545;
+
+// 3️⃣ Importa el resto de Bootstrap
+@import "node_modules/bootstrap/scss/bootstrap";
