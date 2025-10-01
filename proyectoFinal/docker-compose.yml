@@ -1,7 +1,9 @@
 services:
   # NodeJS Service
   node:
-    build: ./node_docker
+    build:
+      context: .
+      dockerfile: node_docker/Dockerfile
     ports:
       - 3000:3000
     volumes:
