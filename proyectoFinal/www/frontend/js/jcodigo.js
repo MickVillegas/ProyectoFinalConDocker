@@ -1951,7 +1951,7 @@ function loginVista(){
             let password = document.getElementById("password").value
 
             try {
-                const respuesta = await fetch('http://localhost:8000/api/login', {
+                const respuesta = await fetch('http://34.227.35.85:8080/api/login', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
