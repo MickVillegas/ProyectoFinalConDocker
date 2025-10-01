@@ -1,12 +1,12 @@
 services:
   # NodeJS Service
   node:
-    image: docker.io/bitnami/node:latest
+    build: ./node_docker
     ports:
       - 3000:3000
     volumes:
       - ./www/:/var/www/html/
-    tty: true  
+    tty: true
   # PHP Service
   php:
     build: './php_docker/'
