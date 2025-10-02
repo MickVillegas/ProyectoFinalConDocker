@@ -1951,7 +1951,7 @@ function loginVista(){
             let password = document.getElementById("password").value
 
             try {
-                const respuesta = await fetch('http://34.227.35.85:8080/api/login', {
+                const respuesta = await fetch('http://34.227.35.85/api/login', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -2016,12 +2016,12 @@ function loginVista(){
                     }
                     
                 } else {
-                    alert(datos.mensaje || 'Error al iniciar sesión');
+                    alert(datos.mensaje || 'ALGO ANDA MAL');
                 }
             }
             catch (error) {
                 console.error("Error en el login:", error);
-                alert('Error de red o del servidor');
+                alert('NO SE PUEDE INICIAR SESION');
             }
 
         }

@@ -99,3 +99,9 @@ Route::middleware(['auth:sanctum', 'role:admin,vendedor'])->group(function () {
 
 
 
+use Illuminate\Support\Facades\Response;
+
+// Manejar todas las peticiones OPTIONS (preflight CORS)
+Route::options('{any}', function () {
+    return Response::json([], 200);
+})->where('any', '.*');
