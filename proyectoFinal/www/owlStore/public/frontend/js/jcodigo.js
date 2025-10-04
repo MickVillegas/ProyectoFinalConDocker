@@ -1963,6 +1963,9 @@ function loginVista(){
                 const datos = await respuesta.json();
 
                 if (respuesta.ok) {
+
+                    console.log("log con exito")
+                    /*
                     localStorage.setItem("token", datos.access_token);     
                     localStorage.setItem("id_usuario", datos.id)
                     localStorage.setItem("billeteraUsuario", datos.billetera)
@@ -1980,33 +1983,11 @@ function loginVista(){
                         mostrarTodosLosJuegos()
                     }
                     if(datos.texto == "TIENDA,BIBLIOTECA,PERFIL"){
-                        botonCarrito()
-                        localStorage.setItem("cabeceras", "TIENDA,BIBLIOTECA,PERFIL")
-                        mostrarTodosLosJuegosComprador()
+                       // botonCarrito()
+                        //localStorage.setItem("cabeceras", "TIENDA,BIBLIOTECA,PERFIL")
+                        //mostrarTodosLosJuegosComprador()
 
-                        const peticion = await fetch("http://localhost:8000/api/cart/" + localStorage.getItem("id_usuario"), {
-                            method: "GET",
-                            headers: {
-                                'Authorization': `Bearer ${localStorage.getItem("token")}`,
-                                'Accept': 'application/json'
-                            }
-                        });
-
-                        if(peticion.ok){
-
-                            let datosCar = await peticion.json()
-
-                            for (let i = 0; i < datosCar.data.length; i++) {
-                            
-                                let guardarCarritoLocal = {nombre: datosCar.data[i].nombre_juegp, precio: datosCar.data[i].precio_juego, id: datosCar.data[i].id_juego, idUsuarioVendedor: datosCar.data[i].idUsuarioVendedor}
-                                miCarrito.push(guardarCarritoLocal)
-                                localStorage.setItem("carrito", JSON.stringify(miCarrito))
-                            
-                            }
-                        }
-                        else{
-                            console.log("No hay nada en el carro backend, putito")
-                        }
+                        
                     }
 
                     if(datos.texto == "TUS JUEGOS,ESTADISTICAS,PERFIL"){
@@ -2014,6 +1995,7 @@ function loginVista(){
                         botonCrear()
                         juegosDessarollador()
                     }
+                        */
                     
                 } else {
                     alert(datos.mensaje || 'ALGO ANDA MAL');
