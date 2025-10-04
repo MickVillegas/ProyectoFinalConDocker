@@ -1,14 +1,4 @@
-services:
-  # NodeJS Service
-  node:
-    build:
-      context: .
-      dockerfile: node_docker/Dockerfile
-    ports:
-      - 3000:3000
-    volumes:
-      - ./www/:/var/www/html/
-    tty: true
+services:  
   # PHP Service
   php:
     build: './php_docker/'
