@@ -223,7 +223,7 @@ function cambiarPagina(event){
 
 async function borrarCarritoBackend() {
         try {
-            const peticion = await fetch("http://34.227.35.85/api/cart/borrar/" + localStorage.getItem("id_usuario"), {
+            const peticion = await fetch("https://owlstore.zapto.org/api/cart/borrar/" + localStorage.getItem("id_usuario"), {
             method: "DELETE",
             headers: {
                 'Authorization': "Bearer " + localStorage.getItem("token"),
@@ -264,7 +264,7 @@ async function guardarCarritoBackend() {
 
     try{
 
-        let rep = await fetch("http://34.227.35.85/api/cart/subir", {
+        let rep = await fetch("https://owlstore.zapto.org/api/cart/subir", {
             method: "POST",
             body: JSON.stringify(datosCarritoFrontend),
             headers: {
@@ -319,7 +319,7 @@ async function procesoComprarJuegos(){
 
         try{
 
-        let rep = await fetch("http://34.227.35.85/api/user/obtenerDineroVenta/" + idDelVendedor + "/" + numero, {
+        let rep = await fetch("https://owlstore.zapto.org/api/user/obtenerDineroVenta/" + idDelVendedor + "/" + numero, {
             method: "PUT",
             headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem("token"),
@@ -347,7 +347,7 @@ catch (error) {
 
             try{
 
-        let rep = await fetch("http://34.227.35.85/api/game/venta/" + idDelJuego, {
+        let rep = await fetch("https://owlstore.zapto.org/api/game/venta/" + idDelJuego, {
             method: "PUT",
             headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem("token"),
@@ -385,7 +385,7 @@ catch (error) {
     resultado = parseFloat(resultado.toFixed(2));
     localStorage.setItem("billeteraUsuario", resultado);
 
-    let ruta = "http://34.227.35.85/api/user/actuazilarBilletera/" + localStorage.getItem("id_usuario") 
+    let ruta = "https://owlstore.zapto.org/api/user/actuazilarBilletera/" + localStorage.getItem("id_usuario") 
 
     let actualizarLaBilletera = {
         billetera: resultado
@@ -422,7 +422,7 @@ miCarrito = JSON.parse(localStorage.getItem("carrito")) || []
 
     for (let i = 0; i < miCarrito.length; i++) {
 
-        let ruta2 = "http://34.227.35.85/api/library/subir" 
+        let ruta2 = "https://owlstore.zapto.org/api/library/subir" 
 
     let subirJuegosABiblioteca = {
         id_user: localStorage.getItem("id_usuario"),
@@ -471,10 +471,10 @@ async function funcionBusqueda() {
     let ruta
 
     if(barraBusqueda.firstElementChild.placeholder == "Buscar juego"){
-        ruta = "http://34.227.35.85/api/game/busqueda/" + barraBusqueda.firstElementChild.value
+        ruta = "https://owlstore.zapto.org/api/game/busqueda/" + barraBusqueda.firstElementChild.value
     }
     else{
-        ruta = "http://34.227.35.85/api/user/busqueda/" + barraBusqueda.firstElementChild.value
+        ruta = "https://owlstore.zapto.org/api/user/busqueda/" + barraBusqueda.firstElementChild.value
     }
 
     const peticion = await fetch(ruta, {
@@ -578,7 +578,7 @@ cabecilla.innerHTML = '<h5 class = "text-light ms-5 mt-3 mb-4">JUEGOS SUBIDOS EN
         //cuerpo.removeChild(cuerpo.firstElementChild)
     }
 
-        const peticion = await fetch("http://34.227.35.85/api/game", {
+        const peticion = await fetch("https://owlstore.zapto.org/api/game", {
         method: "GET",
         headers: {
             'Authorization': `Bearer ${localStorage.getItem("token")}`,
@@ -627,7 +627,7 @@ cabecilla.innerHTML = '<h5 class = "text-light ms-5 mt-3 mb-4">JUEGOS SUBIDOS EN
         nodoClick = event.target
 
         let todoslosGeneros = []
-        let obtenerEtiquetas = await fetch("http://34.227.35.85/api/tags")
+        let obtenerEtiquetas = await fetch("https://owlstore.zapto.org/api/tags")
         let etiquetas = await obtenerEtiquetas.json()
 
         for (let i = 0; i < etiquetas.data.length; i++) {
@@ -675,7 +675,7 @@ cabecilla.innerHTML = '<h5 class = "text-light ms-5 mt-3 mb-4">JUEGOS SUBIDOS EN
         if(nodoClick.textContent == "Actualizar juego"){
 
             try {
-                const peticion = await fetch("http://34.227.35.85/api/game/" + nodoClick.id, {
+                const peticion = await fetch("https://owlstore.zapto.org/api/game/" + nodoClick.id, {
                 method: "GET",
                 headers: {
                     'Authorization': "Bearer " + localStorage.getItem("token"),
@@ -744,7 +744,7 @@ cabecilla.innerHTML = '<h5 class = "text-light ms-5 mt-3 mb-4">JUEGOS SUBIDOS EN
             if (confirmacion == true){
 
                 try {
-                    const peticion = await fetch("http://34.227.35.85/api/game/" + id, {
+                    const peticion = await fetch("https://owlstore.zapto.org/api/game/" + id, {
                     method: "DELETE",
                     headers: {
                         'Authorization': "Bearer " + localStorage.getItem("token"),
@@ -792,7 +792,7 @@ async function acionSubirJuego(event){
         if(nodoClick.textContent == "Subir juego"){
 
             metodo = "POST"
-            ruta = "http://34.227.35.85/api/game"
+            ruta = "https://owlstore.zapto.org/api/game"
             
             subirJuego = {
                 nombre_juego: nombre_juego.value,
@@ -808,7 +808,7 @@ async function acionSubirJuego(event){
         if(nodoClick.textContent == "Subir juego actualizado"){
 
             metodo = "PUT"
-            ruta = "http://34.227.35.85/api/game/" + getIdJuego()
+            ruta = "https://owlstore.zapto.org/api/game/" + getIdJuego()
             
             subirJuego = {
                 nombre_juego: nombre_juego.value,
@@ -884,7 +884,7 @@ async function todosLosUsuarios() {
     }
 
     try {
-        const peticion = await fetch("http://34.227.35.85/api/user/", {
+        const peticion = await fetch("https://owlstore.zapto.org/api/user/", {
             method: "GET",
             headers: {
                 'Authorization': "Bearer " + tok,
@@ -943,7 +943,7 @@ async function todosLosUsuarios() {
             if (confirmacion == true){
 
                 try {
-                    const peticion = await fetch("http://34.227.35.85/api/user/" + id, {
+                    const peticion = await fetch("https://owlstore.zapto.org/api/user/" + id, {
                     method: "DELETE",
                     headers: {
                         'Authorization': "Bearer " + localStorage.getItem("token"),
@@ -1012,7 +1012,7 @@ async function todosLosUsuarios() {
             }
 
             try {
-                const peticion = await fetch("http://34.227.35.85/api/user/" + idSegunElBoton, {
+                const peticion = await fetch("https://owlstore.zapto.org/api/user/" + idSegunElBoton, {
                 method: "GET",
                 headers: {
                     'Authorization': "Bearer " + localStorage.getItem("token"),
@@ -1130,7 +1130,7 @@ async function acionSubirUsuario(event){
         if(nodoClick.textContent == "Crear usuario"){
 
             metodo = "POST"
-            ruta = "http://34.227.35.85/api/user"
+            ruta = "https://owlstore.zapto.org/api/user"
             
             subirUsuario = {
                 nombre_usuario: nombre_usuario.value,
@@ -1149,10 +1149,10 @@ async function acionSubirUsuario(event){
 //let usuarioComprador
             metodo = "PUT"
             if(nodoClick.textContent == "Actualizar perfil"){
-                ruta = "http://34.227.35.85/api/user/" + localStorage.getItem("id_usuario")
+                ruta = "https://owlstore.zapto.org/api/user/" + localStorage.getItem("id_usuario")
             }
             else{
-                ruta = "http://34.227.35.85/api/user/" + getIdUsuario()
+                ruta = "https://owlstore.zapto.org/api/user/" + getIdUsuario()
             }
             
             
@@ -1234,7 +1234,7 @@ async function verEtiquetas(){
     }
 
     try {
-        const peticion = await fetch("http://34.227.35.85/api/tags/", {
+        const peticion = await fetch("https://owlstore.zapto.org/api/tags/", {
             method: "GET",
             headers: {
                 'Authorization': "Bearer " + tok,
@@ -1285,7 +1285,7 @@ async function borrarEtiqueta(id) {
             if (confirmacion == true){
 
                 try {
-                    const peticion = await fetch("http://34.227.35.85/api/tag/borrar/" + id, {
+                    const peticion = await fetch("https://owlstore.zapto.org/api/tag/borrar/" + id, {
                     method: "DELETE",
                     headers: {
                         'Authorization': "Bearer " + localStorage.getItem("token"),
@@ -1339,7 +1339,7 @@ async function acionSubirEtiqueta(event){
 
 try{
 
-        let rep = await fetch("http://34.227.35.85/api/tag/subir", {
+        let rep = await fetch("https://owlstore.zapto.org/api/tag/subir", {
             method: "POST",
             body: JSON.stringify(subirEtiqueta),
             headers: {
@@ -1374,7 +1374,7 @@ try{
 // PARTE COMPRADOR
 //hhhhhh
 async function mejoresJuegos(x) {
-      const peticion = await fetch("http://34.227.35.85/api/game/best", {
+      const peticion = await fetch("https://owlstore.zapto.org/api/game/best", {
         method: "GET",
         headers: {
             'Authorization': `Bearer ${localStorage.getItem("token")}`,
@@ -1462,7 +1462,7 @@ async function mostrarTodosLosJuegosComprador(){
     }
 ///game/best
     mejoresJuegos(todoEnUnDiv)
-    const peticion = await fetch("http://34.227.35.85/api/game", {
+    const peticion = await fetch("https://owlstore.zapto.org/api/game", {
         method: "GET",
         headers: {
             'Authorization': `Bearer ${localStorage.getItem("token")}`,
@@ -1485,7 +1485,7 @@ async function mostrarTodosLosJuegosComprador(){
 
     let filtros = document.createElement("div")
 
-    let obtenerEtiquetas = await fetch("http://34.227.35.85/api/tags")
+    let obtenerEtiquetas = await fetch("https://owlstore.zapto.org/api/tags")
     let etiquetas = await obtenerEtiquetas.json()
 
     filtros.setAttribute("id", "filtros") 
@@ -1553,7 +1553,7 @@ async function mostrarTodosLosJuegosComprador(){
 async function perfilDelUsuario(id) {
 
     try {
-        const peticion = await fetch("http://34.227.35.85/api/user/" + id, {
+        const peticion = await fetch("https://owlstore.zapto.org/api/user/" + id, {
         method: "GET",
         headers: {
             'Authorization': "Bearer " + localStorage.getItem("token"),
@@ -1597,7 +1597,7 @@ async function busquedaPorGenero(event){
         nodoClick = event.target
 
         try {
-            const peticion = await fetch("http://34.227.35.85/api/game/genero/" + nodoClick.textContent, {
+            const peticion = await fetch("https://owlstore.zapto.org/api/game/genero/" + nodoClick.textContent, {
             method: "GET",
             headers: {
                 'Authorization': "Bearer " + localStorage.getItem("token"),
@@ -1675,7 +1675,7 @@ async function busquedaPorGenero(event){
 
 async function binliotecaDelUsuario() {
         try {
-        const peticion = await fetch("http://34.227.35.85/api/library/" + localStorage.getItem("id_usuario"), {
+        const peticion = await fetch("https://owlstore.zapto.org/api/library/" + localStorage.getItem("id_usuario"), {
         method: "GET",
         headers: {
             'Authorization': "Bearer " + localStorage.getItem("token"),
@@ -1728,7 +1728,7 @@ async function infoJuegoUsuario(id) {
     limpiarPantalla()
 
         try {
-        const peticion = await fetch("http://34.227.35.85/api/game/" + idePorAqui, {
+        const peticion = await fetch("https://owlstore.zapto.org/api/game/" + idePorAqui, {
         method: "GET",
         headers: {
             'Authorization': "Bearer " + localStorage.getItem("token"),
@@ -1817,7 +1817,7 @@ async function juegosDessarollador() {
 
     try{
 
-     const peticion = await fetch("http://34.227.35.85/api/game/desarrollador/" + localStorage.getItem("id_usuario"), {
+     const peticion = await fetch("https://owlstore.zapto.org/api/game/desarrollador/" + localStorage.getItem("id_usuario"), {
         method: "GET",
         headers: {
             'Authorization': `Bearer ${localStorage.getItem("token")}`,
@@ -1859,7 +1859,7 @@ catch(error){
 
 async function topJuegos() {
   try {
-    const peticion = await fetch("http://34.227.35.85/api/game/mejoresJuegos/desarrollador/" + localStorage.getItem("id_usuario"), {
+    const peticion = await fetch("https://owlstore.zapto.org/api/game/mejoresJuegos/desarrollador/" + localStorage.getItem("id_usuario"), {
       method: "GET",
       headers: {
         'Authorization': `Bearer ${localStorage.getItem("token")}`,
@@ -1951,7 +1951,7 @@ function loginVista(){
             let password = document.getElementById("password").value
 
             try {
-                const respuesta = await fetch('http://34.227.35.85/api/login', {
+                const respuesta = await fetch('https://owlstore.zapto.org/api/login', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
