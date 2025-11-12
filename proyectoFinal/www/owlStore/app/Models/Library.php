@@ -15,4 +15,14 @@ class Library extends Model
         'id_game',
     ];
 public $timestamps = false; // <--- importante
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_user');
+    }
+
+    public function game()
+    {
+        return $this->belongsTo(Game::class, 'id_game', 'id_juego');
+    }
 }

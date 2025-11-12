@@ -10,98 +10,140 @@ use App\Http\Controllers\cartController;
 
 use App\Http\Controllers\RestControllerAuth;
 
-Route::get('/cart/{idUsuario}', [cartController::class, 'obtenerCarrito']);
-Route::delete('/cart/borrar/{idUsuario}', [cartController::class, 'borrarCarrito']);
-Route::post('/cart/subir', [cartController::class, 'subirCarritoNuevo']);
 
-Route::post('/library/subir', [BibliotecaController::class, 'subirJuegoALaBiblioteca']);
+
+
+
+//comprador
+Route::middleware('auth:sanctum')->get('/cart/{idUsuario}', [cartController::class, 'obtenerCarrito']);
+
+//comprador
+Route::middleware('auth:sanctum')->delete('/cart/borrar/{idUsuario}', [cartController::class, 'borrarCarrito']);
+
+//comprador
+Route::middleware('auth:sanctum')->post('/cart/subir', [cartController::class, 'subirCarritoNuevo']);
+
+//comprador
+Route::middleware('auth:sanctum')->post('/library/subir', [BibliotecaController::class, 'subirJuegoALaBiblioteca']);
+
+//comprador, vendedor y admin
 Route::post('/register', [RestControllerAuth::class, 'register']);
-Route::post('/login', [RestControllerAuth::class, 'login']);
 
+//comprador, vendedor y admin
+Route::post('/login', [RestControllerAuth::class, 'login']);
+Route::put('/cambiarContrasenia/{email}', [UsuariosController::class, 'cambiarContraseña']);
+
+
+//comprador (al comprar un juego el dinero se deposita en la billetera del vendedor)
 Route::middleware('auth:sanctum')->put('/user/obtenerDineroVenta/{id}/{precio}', [UsuariosController::class, 'recibirDineroJuegoComprado']);
 
+//comprador
 Route::middleware('auth:sanctum')->put('/game/venta/{id}', [JuegosController::class, 'aumentarNumeroVenta']);
 
+//comprador, verndedor y admin
 Route::middleware(['auth:sanctum'])->put('/user/{id}', [UsuariosController::class, 'actualizarUsuario']);
-Route::middleware(['auth:sanctum'])->get('/user/{id}', [UsuariosController::class, 'obtenerUnUsuario']);
+
+
+//comprador, admin y vendedor
+Route::get('/user/{id}', [UsuariosController::class, 'obtenerUnUsuario']);
+
+//comprador, vendedor y admin
 Route::middleware(['auth:sanctum'])->delete('/user/{id}', [UsuariosController::class, 'borrarUsuario']);
+
+//admin y vendedor
 Route::middleware(['auth:sanctum'])->delete('/game/{id}', [JuegosController::class, 'borrarUnJuego']);
+
+//admin y vendedor
 Route::middleware(['auth:sanctum'])->put('/game/{id}', [JuegosController::class, 'actualizarJuego']);
+
+
+//admin y vendedor
 Route::middleware(['auth:sanctum'])->post('/game', [JuegosController::class, 'subirJuego']);
+
+
+//comprador, admin y vendedor
 Route::middleware(['auth:sanctum'])->put('/user/actuazilarBilletera/{id}', [UsuariosController::class, 'actualizarBilleteraUsuario']);
 
-Route::post('/tag/subir', [TagController::class, 'publicarTag']);
-Route::delete('/tag/borrar/{id}', [TagController::class, 'borrarTag']);
-
+//comprador, admin y vendedor
 Route::post('/user', [UsuariosController::class, 'subirUsuario']);
 
+
+//comprador, admin y vendedor
 Route::get('/tags', [TagController::class, 'obtenerEtiquetas']);
-Route::get('/game/desarrollador/{id}', [JuegosController::class, 'obtenerJuegosPorUsuario']);
-
- Route::get('/game/mejoresJuegos/desarrollador/{id}', [JuegosController::class, 'losTresJuegosMasVendidosPorVendedor']);
-//Route::get('/user', [UsuariosController::class, 'obtenerUsuarios']);
-Route::get('/game/busqueda/{nombreJuego}', [JuegosController::class, 'buscarPorNombreJuego']);
-Route::get('/user/busqueda/{nombreUsuario}', [UsuariosController::class, 'buscarPorNombreUusario']);
 
 
+//comprador, admin y vendedor
+Route::middleware('auth:sanctum')->get('/game/desarrollador/{id}', [JuegosController::class, 'obtenerJuegosPorUsuario']);
+
+
+//vendedor
+Route::middleware('auth:sanctum')->get('/game/mejoresJuegos/desarrollador/{id}', [JuegosController::class, 'losTresJuegosMasVendidosPorVendedor']);
+
+
+//comprador, admin y vendedor
+Route::middleware('auth:sanctum')->get('/game/busqueda/{nombreJuego}', [JuegosController::class, 'buscarPorNombreJuego']);
+
+
+
+
+
+//comprador, admin y vendedor
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [RestControllerAuth::class, 'logout']);
     Route::get('/me', [RestControllerAuth::class, 'me']);
 });
 
-// ==========================================
-// 👥 Rutas de USUARIOS
-// ==========================================
 
-// Solo admin puede ver todos, crear, actualizar o eliminar usuarios
+
+
 Route::middleware(['auth:sanctum'])->group(function () {
-   Route::get('/user', [UsuariosController::class, 'obtenerUsuarios']);
-});
 
-// Cualquier usuario autenticado puede ver su propio perfil, crear una cuenta, actualizarla o borrarla
-/*
-Route::middleware(['auth:sanctum'])->get('/user/{id}', [UsuariosController::class, 'obtenerUnUsuario']);
-Route::post('/user', [UsuariosController::class, 'subirUsuario']);
-Route::delete('/user/{id}', [UsuariosController::class, 'borrarUsuario']);
-*/
 
-// ==========================================
-// 🎮 Rutas de JUEGOS
-// ==========================================
-
-// Todos los usuarios autenticados pueden ver juegos (compradores, vendedores, admin)
-Route::middleware(['auth:sanctum'])->group(function () {
+//comprador, admin y vendedor
     Route::get('/game', [JuegosController::class, 'obtenerJuegos']);
+
+
+//comprador
     Route::get('/game/best', [JuegosController::class, 'obtenerTresMejoresJuegos']);
+
+//comprador
     Route::get('/game/genero/{genero}', [JuegosController::class, 'obtenerJuegosPorGenero']);
+
+
+//comprador, admin y vendedor
     Route::get('/game/{id}', [JuegosController::class, 'obtenerUnJuego']);
+
+//comprador
     Route::get('/library/{id}', [BibliotecaController::class, 'obtenerJuegosUsuario']);
     
    
 
 });
 
-// Admin y vendedores pueden subir juegos
 
-// Admin y vendedores pueden actualizar o borrar juegos
-Route::middleware(['auth:sanctum', 'role:admin,vendedor'])->group(function () {
-    //Route::put('/game/{id}', [JuegosController::class, 'actualizarJuego']);
-    // Nota: validación de dueño del juego se hace dentro del controlador
+
+
+
+
+
+
+
+
+
+Route::middleware(['auth:sanctum'])->group(function(){
+
+Route::get('/user', [UsuariosController::class, 'obtenerUsuarios']);
+Route::get('/user', [UsuariosController::class, 'obtenerUsuarios']);
+
+//admin
+Route::post('/tag/subir', [TagController::class, 'publicarTag']);
+
+//admin
+Route::delete('/tag/borrar/{id}', [TagController::class, 'borrarTag']);
+
+//admin
+Route::get('/user/busqueda/{nombreUsuario}', [UsuariosController::class, 'buscarPorNombreUusario']);
 });
 
 
-// ==========================================
-// 📚 Biblioteca del usuario (relación juegos-usuarios)
-// ==========================================
 
-// Cualquier usuario autenticado puede ver su propia biblioteca
-
-
-
-
-use Illuminate\Support\Facades\Response;
-
-// Manejar todas las peticiones OPTIONS (preflight CORS)
-Route::options('{any}', function () {
-    return Response::json([], 200);
-})->where('any', '.*');

@@ -69,7 +69,7 @@ class RestControllerAuth extends Controller
         $textoDePrueba = "";
 
         if ($user->rol === 'admin') {
-            $textoDePrueba = "USUARIOS,JUEGOS,PERFIL";
+            $textoDePrueba = "JUEGOS,USUARIOS,ETIQUETAS,PERFIL";
         } else if ($user->rol === 'vendedor') {
             $textoDePrueba = "TUS JUEGOS,ESTADISTICAS,PERFIL";
         } else if ($user->rol === 'comprador') {

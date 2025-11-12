@@ -4,28 +4,107 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">-->
-    <link rel="stylesheet" href="./css/styles.css">
     <link rel="stylesheet" href="../css/styles.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-   
-    <title>Document</title>
+   <link rel="stylesheet" href="./css/styles.css">
+   <link rel="icon" type="image/png" href="./img/owlStoreLogo.png">
+    <title id="textoDocumento">Document</title>
 
     <style>
-        #botonCarro, #botonTag{
+       #botonTag{
             position: absolute;
             top: 7%;
             left: 80%;
         }
 
-        #carrito{
-            position: absolute;
-            width: 30%;
-            top: 15%;
-            left: 70%;
+        #modal{
+            display: none;
+            position: sticky;
+            z-index: 12;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            bottom: 40%;
+            left: 40%;
         }
 
-        body, .oscuro{
-    background-color: #202124
+            body.modal-active {
+      filter: blur(3px) brightness(0.8);
+    
+      background-color: #202124
+    }
+
+        #contenido {
+      transition: filter 0.4s ease, background-color 0.4s ease;
+      min-height: 100vh;
+    }
+
+    #contenido.borroso {
+      filter: blur(5px) brightness(0.7);
+      background-color: rgba(0, 0, 0, 0.3);
+    }
+
+    header{
+      position: sticky;
+      top: 0%;
+       z-index: 11;
+    }
+
+     #botonCarro{
+        width: 55px;
+        height: 50px;
+        cursor: pointer;  
+     }
+
+    #aquiVaElCarrito{
+        position: absolute;
+        top: 6%;
+        left: 80%;
+    }
+
+#carrito {
+
+  position: fixed;
+  align-items: center;
+  text-align: center;
+  bottom: 30%;
+  z-index: 1000;
+}
+
+@media screen and (max-width: 600px) {
+  #carrito {
+    bottom: 10%; /* más abajo en móviles */
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+}
+
+    #aquiVaElCarritoDesplegable{
+      position: absolute;
+      left: 75%;
+      bottom: 55%;
+      width: 80%;
+      z-index: 11;
+    }
+    
+    #botonCoprarTodo{
+      right: 70%;
+    }
+    
+    .borroso {
+  filter: blur(5px);          /* aplica el efecto de desenfoque */
+  transition: filter 0.3s ease; /* transición suave al entrar/salir */
+  pointer-events: none;       /* evita que se pueda hacer clic en el fondo */
+  user-select: none;          /* impide seleccionar texto durante el blur */
+}
+
+.cursor-pointer {
+  cursor: pointer;
+  color: #ffc107; /* Color amarillo para indicar interactividad */
+}
+.cursor-pointer:hover {
+  cursor: pointer;
+  color: rgb(85, 85, 255); /* Color amarillo para indicar interactividad */
 }
 
     </style>
@@ -33,31 +112,67 @@
 </head>
 <body>
 
-    <header class="row bg-dark text-light">
-            <img src="./img/owlStoreLogo.png" class="col-md-4"  style="width: 150px; height: 110px;" alt="">
-            <p class="col-md-4 mt-4 fs-4">Owl <br> Store</p>
-            <div id="menu" class="col-md-4 mt-2 text-center row">
-            </div>
-    </header>
+
+  <header class="row bg-dark text-light text-center align-items-center py-3">
+    <div class="col-md-4 mb-2 mb-md-0">
+      <img src="./img/logoOWLSTORE.png"style="width: 250px; height: 110px;"alt="Logo de Owl Store">
+    </div>
+    <div id="menu" class="col-md-4">
+
+</header>
+<br>
+<div class="justify-content-center text-center my-4">
+  <div class="d-flex flex-column flex-md-row justify-content-center align-items-center gap-3">
+    <div id="barraDeBusqueda" class="d-flex align-items-center gap-2"></div>
+  </div>
+</div>
+<br>
 
     <div class="ms-5 me-5">
 
-    <br>
-    
-    <div id="cabecera"></div>
+    <div id="cabecera" class="d-flex flex-column flex-md-row justify-content-center align-items-center"></div>
 
-    <div class="row">
-        <div class="col-md-4" id="aquiHayUnBoton"></div>
-        <div class="col-md-4 offset-md-4" id="barraDeBusqueda"></div>
+    <div class="d-flex flex-column flex-md-row justify-content-center align-items-center gap-3">
+    <div id="aquiHayUnBoton"></div>
     </div>
 
-    <br>
-    <br>
     
+  <div class="d-flex flex-column align-items-center ms-4 me-4">
     <div id="carrito" class="row text-light bg-dark mb-5 true"></div>
-    <div id="cuerpo" class="d-flex flex-column align-items-center"></div>
+</div>
+
+    <div id="cuerpo" class="d-flex flex-column align-items-center justify-content-center"></div>
 
     </div>
+    </div>
+
+    <div id="modal" class="me-5 ms-5 bg-dark text-light border border-2 border-warning rounded">
+        <div class="modal-content-custom mt-5 mb-5 me-2 ms-2">
+            <h3 id="modal-texto"></h3>
+            <p>(Esta alerta se cerrará automaticamente)</p>
+        </div>
+    </div>
+<br>
+<br>
+<div class="bg-dark text-light">
+  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+    <div class="col-md-4 d-flex align-items-center">
+        <img src="./img/owlStoreLogo.png" style="width: 80px; height: 85px;" alt="Logo de OwlStore">
+      <span class="mb-3 mb-md-0">© 2025 OwlStore</span>
+    </div>
+    <div class="">
+      <a class="link-offset-2 link-underline link-underline-opacity-0 link-warning" href="./contacto.html">¡Contactanos!</a>
+    </div>
+    <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+      <li class="ms-3">
+        <img src="./img/instagram-white-icon.webp" style="width: 40px;" alt="link al instagram de la compañía">
+      </li>
+      <li class="ms-5 me-4">
+        <img src="./img/facebook-new.png" style="width: 40px;" alt="link al facebook de la compañía">
+      </li>
+    </ul>
+  </footer>
+</div>
 
     <script src="./js/jcodigo.js"></script>
 </body>

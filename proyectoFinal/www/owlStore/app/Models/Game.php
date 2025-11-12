@@ -29,4 +29,8 @@ class Game extends Model
     public function users(){
         return $this->belongsToMany(Usuario::class, 'libraries', 'id_game', 'id_user');
     }
+
+    public function libraries(){
+        return $this->hasMany(Library::class, 'id_game', 'id_juego');
+    }
 }

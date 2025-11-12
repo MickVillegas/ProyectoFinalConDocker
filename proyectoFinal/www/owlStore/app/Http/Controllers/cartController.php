@@ -9,7 +9,13 @@ use \App\Models\Cart;
 
 class cartController extends Controller
 {
-    public function obtenerCarrito(String $idUsuario){
+    public function obtenerCarrito(String $idUsuario, Request $req){
+
+        $user = $req->user();
+
+        if (!$user) {
+            return response()->json(["respuesta" => "No estás autenticado."], 401);
+        }
 
         $carrito = Cart::where("id_usuario_comprador", $idUsuario)->paginate();
 
@@ -20,7 +26,14 @@ class cartController extends Controller
         return response()->json($carrito);
     }
 
-    public function borrarCarrito(String $idUsuario){
+    public function borrarCarrito(String $idUsuario, Request $req){
+
+        $user = $req->user();
+
+        if (!$user) {
+            return response()->json(["respuesta" => "No estás autenticado."], 401);
+        }
+
         $filasBorradas = Cart::where('id_usuario_comprador', $idUsuario)->delete();
 
         if($filasBorradas === 0){
@@ -31,6 +44,12 @@ class cartController extends Controller
     }
 
     public function subirCarritoNuevo(Request $req){
+        $user = $req->user();
+
+        if (!$user) {
+            return response()->json(["respuesta" => "No estás autenticado."], 401);
+        }
+
         Cart::create(['nombre_juegp' => $req->nombre_juegp, 'precio_juego' => $req->precio_juego, 'id_juego' => $req->id_juego, 'idUsuarioVendedor' => $req->idUsuarioVendedor, 'id_usuario_comprador' => $req->id_usuario_comprador]);
         return response()->json(["respuesta" => "Usuario nuevo publicado con exito"], 200);
     }
