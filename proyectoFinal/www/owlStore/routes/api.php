@@ -133,7 +133,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
 Route::middleware(['auth:sanctum'])->group(function(){
 
 Route::get('/user', [UsuariosController::class, 'obtenerUsuarios']);
-Route::get('/user', [UsuariosController::class, 'obtenerUsuarios']);
 
 //admin
 Route::post('/tag/subir', [TagController::class, 'publicarTag']);

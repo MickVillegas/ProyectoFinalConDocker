@@ -998,7 +998,7 @@ async function todosLosUsuarios() {
     }
 
     try {
-        const peticion = await fetch("https://owlstore.zapto.org/api/user/", {
+        const peticion = await fetch("https://owlstore.zapto.org/api/user", {
             method: "GET",
             headers: {
                 'Authorization': "Bearer " + tok,
@@ -1363,7 +1363,7 @@ async function verEtiquetas(){
     }
 
     try {
-        const peticion = await fetch("https://owlstore.zapto.org/api/tags/", {
+        const peticion = await fetch("https://owlstore.zapto.org/api/tags", {
             method: "GET",
             headers: {
                 'Authorization': "Bearer " + tok,
