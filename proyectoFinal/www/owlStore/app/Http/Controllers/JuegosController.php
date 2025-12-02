@@ -62,8 +62,14 @@ class JuegosController extends Controller
         if (!$user) {
             return response()->json(["respuesta" => "No estás autenticado."], 401);
         }
+        $juegos = Game::where('id_usuario_publicador', $id)
+              ->orderByRaw('CAST(ventas AS SIGNED) DESC')
+              ->take(3)
+              ->get();
 
-        $juegos = Game::where('id_usuario_publicador', $id)->orderBy('ventas', 'ASC')->take(3)->get();
+        if ($juegos->isEmpty()) {
+            return response()->json(["respuesta" => "Este usuario no tiene juegos."], 404);
+        }
 
         return response()->json($juegos);
     }

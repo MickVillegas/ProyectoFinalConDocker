@@ -744,7 +744,7 @@ async function mostrarTodosLosJuegos(){
 
             cuerpo.removeChild(cuerpo.firstElementChild)
             let formulario = document.createElement("form")
-            formulario.setAttribute("class", "text-light border border-5 rounded border-warning pt-5 pb-5 pe-3 ps-3")
+            formulario.setAttribute("class", "text-light border border-5 rounded border-warning pt-5 pb-5 pe-3 ps-3 mt-5")
 
             formulario.innerHTML = '<legend class = "mb-3"><div class="d-flex justify-content-center">Subir videojuego nuevo</div><hr class="hr hr-blurry"/></legend><label for="inputPassword5" class="form-label">Nombre del juego</label>'
                 + '<input id="nombre_juego" type="text" class="form-control mb-2" placeholder="Nombre del juego">'
@@ -1092,7 +1092,7 @@ async function todosLosUsuarios() {
 
             cuerpo.removeChild(cuerpo.firstElementChild)
             let formulario = document.createElement("form")
-            formulario.setAttribute("class", "text-light border border-5 rounded border-warning bg-dark pt-5 pb-5 pe-3 ps-3")
+            formulario.setAttribute("class", "text-light border border-5 rounded border-warning bg-dark pt-5 pb-5 pe-3 ps-3 mt-5")
 
             formulario.innerHTML = '<legend class = "mb-3"><div class="d-flex justify-content-center">Subir usuario nuevo</div><hr class="hr hr-blurry"/></legend><label for="inputPassword5" class="form-label">Nombre del usuario</label>'
                 + '<input id="nombre_usuario" type="text" class="form-control mb-2" placeholder="Nombre del usuario">'
@@ -1449,7 +1449,7 @@ function crearFormularioEtiqueta(){
     tituloDocumento.textContent = "Crear nueva etiqueta"
     limpiarPantalla()
     let formulario = document.createElement("form")
-    formulario.setAttribute("class", "text-light border border-5 rounded border-warning pt-5 pb-5 pe-3 ps-3")
+    formulario.setAttribute("class", "text-light border border-5 rounded border-warning pt-5 pb-5 pe-3 ps-3 mt-5")
 
     formulario.innerHTML = '<legend class = "mb-3"><div class="d-flex justify-content-center">Subir etiqueta nueva</div><hr class="hr hr-blurry"/></legend><label for="inputPassword5" class="form-label">Nombre etiqueta</label>'
         + '<input id="nombre_etiqueta" type="text" class="form-control mb-3" placeholder="Nombre Etiqueta">'
