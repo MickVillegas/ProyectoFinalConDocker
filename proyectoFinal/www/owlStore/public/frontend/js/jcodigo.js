@@ -337,12 +337,10 @@ async function borrarCarritoBackend() {
             } 
             else {
                 const errorData = await peticion.json();
-                //alert("Error al borrar el carro: " + errorData.respuesta);
             }
 
         } catch (error) {
             console.error(error);
-            alert('HE PETADO');
         }
     }
 
@@ -384,7 +382,6 @@ async function guardarCarritoBackend() {
 
     catch (error) {
         console.error('Error de red o parseo: ', error);
-        alert('Error al conectar con el servidor');
     }
     }
     }
@@ -445,12 +442,10 @@ async function procesoComprarJuegos() {
       const datos = await rep.json();
 
       if (!rep.ok) {
-        alert(datos.rep || "Error al DARLE DINERO AL CREADOR");
         return;
       }
     } catch (error) {
       console.error('Error al darle dinero al creador:', error);
-      alert('Error al conectar con el servidor');
       return;
     }
 
@@ -467,12 +462,10 @@ async function procesoComprarJuegos() {
       const datos = await rep.json();
 
       if (!rep.ok) {
-        alert(datos.rep || "Error al SUBIR VENTA");
         return;
       }
     } catch (error) {
       console.error('Error al registrar venta del juego:', error);
-      alert('Error al conectar con el servidor');
       return;
     }
   }
@@ -500,12 +493,10 @@ async function procesoComprarJuegos() {
     const datos = await rep.json();
 
     if (!rep.ok) {
-      alert(datos.rep || "Error al ACTUALIZAR BILLETERA DEL USUARIO COMPRADOR");
       return;
     }
   } catch (error) {
     console.error('Error al actualizar billetera:', error);
-    alert('Error al conectar con el servidor');
     return;
   }
 
@@ -530,12 +521,10 @@ async function procesoComprarJuegos() {
       const datos = await rep.json();
 
       if (!rep.ok) {
-        alert(datos.rep || "Error al PONER EL JUEGO EN LA BIBLIOTECA");
         return;
       }
     } catch (error) {
       console.error('Error al subir juego a la biblioteca:', error);
-      alert('Error al conectar con el servidor');
       return;
     }
   }
@@ -792,7 +781,6 @@ async function mostrarTodosLosJuegos(){
                 let datos = await peticion.json();
 
                 if (!peticion.ok) {
-                    alert(datos.respuesta || "Error al obtener usuarios");
                     console.error("Error:", datos);
                     return;
                 }
@@ -841,7 +829,6 @@ async function mostrarTodosLosJuegos(){
                         }
             catch (error) {
                 console.error("Error de red o servidor:", error);
-                alert("Hubo un problema al conectar con el servidor.");
             }
         }
     }
@@ -867,11 +854,9 @@ async function mostrarTodosLosJuegos(){
                         }, 3000);
                         
                     } else {
-                        alert("Error al eliminar el juego");
                     }
                 } catch (error) {
                     console.error('Error de red o parseo: ', error);
-                    alert('Error al conectar con el servidor');
                 }
         }
     }
@@ -1009,7 +994,6 @@ async function todosLosUsuarios() {
         const datos = await peticion.json();
 
         if (!peticion.ok) {
-            alert(datos.respuesta || "Error al obtener usuarios");
             console.error("Error:", datos);
             return;
         }
@@ -1048,7 +1032,6 @@ async function todosLosUsuarios() {
         cuerpo.appendChild(contenedorDeCards);
     } catch (error) {
         console.error("Error de red o servidor:", error);
-        alert("Hubo un problema al conectar con el servidor.");
     }
 }
 
@@ -1072,11 +1055,9 @@ async function todosLosUsuarios() {
                         }, 3000);
                         
                     } else {
-                        alert("Error al eliminar el usuario");
                     }
                 } catch (error) {
                     console.error('Error de red o parseo: ', error);
-                    alert('Error al conectar con el servidor');
                 }
         }
     }
@@ -1139,7 +1120,6 @@ async function todosLosUsuarios() {
                 let datos = await peticion.json();
 
                 if (!peticion.ok) {
-                    alert(datos.respuesta || "Error al obtener usuarios");
                     console.error("Error:", datos);
                     return;
                 }
@@ -1211,7 +1191,6 @@ async function todosLosUsuarios() {
             }
             catch (error) {
                 console.error("Error de red o servidor:", error);
-                alert("Hubo un problema al conectar con el servidor.");
             }
         }
     }
@@ -1374,7 +1353,6 @@ async function verEtiquetas(){
         const datos = await peticion.json();
 
         if (!peticion.ok) {
-            alert(datos.respuesta || "Error al obtener usuarios");
             console.error("Error:", datos);
             return;
         }
@@ -1404,7 +1382,6 @@ async function verEtiquetas(){
         cuerpo.appendChild(contenedorDeCards);
     } catch (error) {
         console.error("Error de red o servidor:", error);
-        alert("Hubo un problema al conectar con el servidor.");
     }
 
 }
@@ -1429,11 +1406,9 @@ async function borrarEtiqueta(id) {
                         }, 3000);
                        
                     } else {
-                        alert("Error al eliminar el usuario");
                     }
                 } catch (error) {
                     console.error('Error de red o parseo: ', error);
-                    alert('Error al conectar con el servidor');
                 }
         }
 }
@@ -1771,7 +1746,6 @@ async function perfilDelUsuario(id) {
         let datos = await peticion.json();
 
         if (!peticion.ok) {
-            alert(datos.respuesta || "Error al obtener usuarios");
             console.error("Error:", datos);
             return;
         }
@@ -1799,7 +1773,6 @@ async function perfilDelUsuario(id) {
     }
     catch (error) {
         console.error("Error de red o servidor:", error);
-        alert("Hubo un problema al conectar con el servidor.");
     }
     
 }
@@ -1821,7 +1794,6 @@ async function busquedaPorGenero(event){
             let datos = await peticion.json();
 
             if (!peticion.ok) {
-                alert(datos.respuesta || "Error al obtener usuarios");
                 console.error("Error:", datos);
                 return;
             }
@@ -1880,7 +1852,6 @@ async function busquedaPorGenero(event){
 
     catch (error) {
         console.error("Error de red o servidor:", error);
-        alert("Hubo un problema al conectar con el servidor.");
     }
     }
 }
@@ -1901,7 +1872,6 @@ async function binliotecaDelUsuario() {
         let datos = await peticion.json();
 
         if (!peticion.ok) {
-            alert(datos.respuesta || "Error al obtener usuarios");
             console.error("Error:", datos);
             return;
         }
@@ -1932,7 +1902,6 @@ async function binliotecaDelUsuario() {
     }
     catch (error) {
         console.error("Error de red o servidor:", error);
-        alert("Hubo un problema al conectar con el servidor.");
     }
 }
 
@@ -1961,7 +1930,6 @@ async function infoJuegoUsuario(id) {
         let datos = await peticion.json();
 
         if (!peticion.ok) {
-            alert(datos.respuesta || "Error al obtener usuarios");
             console.error("Error:", datos);
             return;
         }
@@ -1999,7 +1967,6 @@ async function infoJuegoUsuario(id) {
     }
     catch (error) {
         console.error("Error de red o servidor:", error);
-        alert("Hubo un problema al conectar con el servidor.");
     }
 }
 
@@ -2102,7 +2069,6 @@ async function juegosDessarollador() {
 catch(error){
     
     console.log(error)
-    alert(error)
 }
 }
 
@@ -2177,7 +2143,6 @@ async function topJuegos() {
 
   } catch (error) {
     console.log(error);
-    alert(error);
   }
 }
 
